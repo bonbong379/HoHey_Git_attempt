@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <a class="btn btn-secondary btn-sm mt-1 mb-3" href="{% url 'film_register' %}">Add New Film</a>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% for film in film_profiles %}
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" src="/media/video_icon.png" alt="Card image cap">
+              <div class="card-body">
+                <a class="card-title" href="{% url 'film-home' film.pk %}">{{ film.film_name }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
