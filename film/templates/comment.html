@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <li>{{ comment.author }} commented on {{ comment.date_posted }}(id {{ comment.id }})</li>
+    <li>{{ comment.content }}</li>
+    {% if user.is_authenticated %}
+        <li>    
+            <form method="POST"><!-- make comments-->
+                {% csrf_token %}
+                <input type="hidden" name="commentparent" value="{{ comment.id }}">
+                <input type="hidden" name="commentmasteressay" value="{{ review.id }}">
+                <input type="text" name="commentcontents">
+                <button type="submit">Add comment!</button>
+            </form>
+        </li>
+        <br>
+    {% endif %}
+    {% if comment.child %}
+        <li>
+            <ul>
+                {% for comment in comment.child.all %}
+                {% include "films/comment.html" with comment=comment %}
+                {%endfor%}
+            </ul>
+        </li>
+        <br>
+    {% endif %}
+{% endblock content %}

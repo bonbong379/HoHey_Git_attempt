@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="album py-5 bg-light">
+
+    <section class="jumbotron text-center" style="background-image:url('https://mediafiles.cinema.com.hk/broadway/cmsimg/cinweb/movie/movie_1615283657.jpg');
+ background-position: center;
+ background-size: cover;
+">
+        <div class="container" style="margin-top:auto;
+">
+            <h3 class="jumbotron-subheading" style = "color: white;
+">HoHey</h3>
+            <h1 class="jumbotron-heading" style = "color: white;
+">Godzilla vs. Kong</h1>
+            <p style = "color: white;
+">HoHey is where your film assets are preserved, displayed, and celebrated - all the while you earn passive income.</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Check it out</a>
+                <a href="#" class="btn btn-secondary my-2">Join the discussion</a>
+            </p>
+        </div>
+    </section>
+    <br>
+
+    <div class="container">
+    
+      <div class="row">
+        {% for post in posts %}
+          <div class="col-md-4">
+            <div class="card" style="width: 18rem;
+">
+              <video height="240" controls>
+                <source src="movie.mp4" type="video/mp4">
+                <source src="movie.ogg" type="video/ogg">
+                Your browser does not support the video tag.
+              </video>
+              <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text">{{ post.author }} added a new review</p>
+                <p class="card-text">{{ post.content|truncatechars:150 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Like</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Comment</button>
+                  </div>
+                  <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
